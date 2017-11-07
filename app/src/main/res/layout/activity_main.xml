@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="store.tornado.alex.unittesting.MainActivity">
+
+    <TextView
+        android:id="@+id/result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="76dp"
+        android:hint="Result"
+        tools:layout_editor_absoluteX="154dp"
+        tools:layout_editor_absoluteY="260dp"/>
+
+    <EditText
+        android:id="@+id/prefix"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Prefix"
+        tools:layout_editor_absoluteX="84dp"
+        tools:layout_editor_absoluteY="95dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/prefix"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="47dp"
+        android:text="Generate"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="174dp"/>
+
+</RelativeLayout>
