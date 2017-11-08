@@ -1,5 +1,7 @@
 package store.tornado.alex.unittesting;
 
+import store.tornado.alex.unittesting.generator.StringGenerator;
+
 /**
  * Created by: anna
  * Date: 11/5/17.
@@ -7,11 +9,10 @@ package store.tornado.alex.unittesting;
 
 public class MainPresenter implements MVP.Presenter {
 	private final MVP.Model model;
-	private final MVP.View view;
+	private MVP.View view;
 
-	public MainPresenter(MVP.Model model, MVP.View view) {
-		this.model = model;
-		this.view = view;
+	public MainPresenter() {
+		this.model = new MainModel(new StringGenerator());
 	}
 
 	@Override
@@ -22,5 +23,10 @@ public class MainPresenter implements MVP.Presenter {
 	@Override
 	public void onViewCreated() {
 		view.updateResult("please enter prefix");
+	}
+
+	@Override
+	public void setView(MVP.View view) {
+		this.view = view;
 	}
 }

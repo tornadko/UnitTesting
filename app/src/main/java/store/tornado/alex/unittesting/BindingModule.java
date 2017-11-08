@@ -14,6 +14,7 @@ public class BindingModule extends AbstractModule {
 	@Override
 	protected void configure() {
 		bind(MVP.Model.class).to(MainModel.class);
+		bind(MVP.Presenter.class).to(MainPresenter.class);
 		bind(Generator.class).to(StringGenerator.class);
 	}
 }

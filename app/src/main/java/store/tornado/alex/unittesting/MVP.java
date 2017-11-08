@@ -17,6 +17,8 @@ public interface MVP {
 		void onGenerateClicked(String prefix);
 
 		void onViewCreated();
+
+		void setView(View view);
 	}
 
 	interface Model {

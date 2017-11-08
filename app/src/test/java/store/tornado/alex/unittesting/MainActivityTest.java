@@ -1,6 +1,7 @@
 package store.tornado.alex.unittesting;
 
 import android.app.Activity;
+import android.widget.Button;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -15,22 +16,24 @@ import store.tornado.alex.unittesting.generator.Generator;
 import store.tornado.alex.unittesting.rule.InjectRule;
 import store.tornado.alex.unittesting.rule.InjectWithMocksRule;
 
+import static org.junit.Assert.assertNotNull;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.verify;
 
 /**
  * Created by: anna
  * Date: 11/5/17.
  */
-@Config(manifest = "app/src/main/AndroidManifest.xml", packageName = "store.tornado.alex.unittesting")
 @RunWith(RobolectricTestRunner.class)
+@Config(constants = BuildConfig.class, sdk = 21)
 public class MainActivityTest {
 
 	@Mock
-	public Generator generator;
+	private Generator generator;
 	@Mock
-	public MVP.Presenter presenter;
+	private MVP.Presenter presenter;
 
-	Activity activity;
+	private Activity activity;
 
 	@Rule
 	public InjectWithMocksRule injectWithMocksRule = new InjectWithMocksRule(this,
@@ -40,17 +43,21 @@ public class MainActivityTest {
 
 	@Before
 	public void setUp() {
-		activity = Robolectric.buildActivity(SecondActivity.class).create().start().visible().get();
+		activity = Robolectric.buildActivity(MainActivity.class).create().start().resume().visible().get();
 	}
 
 	@Test
-	public void onCreate() throws Exception {
-//		activity.;
-		//verify(presenter).onViewCreated();
+	public void testOnCreate() throws Exception {
+		verify(presenter).setView((MVP.View) activity);
+		verify(presenter).onViewCreated();
 	}
 
 	@Test
-	public void updateResult() throws Exception {
+	public void testGenerateClicked() throws Exception {
+		Button btn = activity.findViewById(R.id.button);
+		assertNotNull(btn);
+		btn.performClick();
+		verify(presenter).onGenerateClicked(anyString());
 	}
 
 }

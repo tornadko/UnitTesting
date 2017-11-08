@@ -13,8 +13,6 @@ import store.tornado.alex.unittesting.generator.Generator;
 public class MainActivity extends RoboActivity implements MVP.View {
 
 	@Inject
-	public Generator generator;
-
 	private MVP.Presenter presenter;
 	private TextView tvResult;
 	private EditText etPrefix;
@@ -25,16 +23,11 @@ public class MainActivity extends RoboActivity implements MVP.View {
 		super.onCreate(savedInstanceState);
 		RoboGuice.getInjector(this).injectMembersWithoutViews(this);
 
-		this.presenter = new MainPresenter(new MainModel(generator), this);
 		setContentView(R.layout.activity_main);
 		tvResult = findViewById(R.id.result);
 		etPrefix = findViewById(R.id.prefix);
-		findViewById(R.id.button).setOnClickListener(new android.view.View.OnClickListener() {
-			@Override
-			public void onClick(android.view.View view) {
-				presenter.onGenerateClicked(String.valueOf(etPrefix.getText()));
-			}
-		});
+		findViewById(R.id.button).setOnClickListener(view -> presenter.onGenerateClicked(String.valueOf(etPrefix.getText())));
+		this.presenter.setView(this);
 		this.presenter.onViewCreated();
 	}
 
